@@ -174,8 +174,7 @@ namespace DomainLogic
             if(health < 0) { health = 0; }
 
             // Not sure what it meant to be destroyed when health drops to 0,
-            // but since C# doesn't have explicit memory management, I considered 
-            // it's a flag instead of freeing the object from memory.
+            // but I considered it's a flag instead of freeing the object from memory.
             if (health == 0) { alive = false; }            
         }
 
