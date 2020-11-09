@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30621.155
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainLogic", "DomainLogic\DomainLogic.csproj", "{2170517E-9DF9-440A-BB27-D46CAF8C3E0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSuite", "TestSuite\TestSuite.csproj", "{30FD2F8C-E6B7-4843-861F-13B5868A9E34}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2170517E-9DF9-440A-BB27-D46CAF8C3E0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2170517E-9DF9-440A-BB27-D46CAF8C3E0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2170517E-9DF9-440A-BB27-D46CAF8C3E0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2170517E-9DF9-440A-BB27-D46CAF8C3E0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30FD2F8C-E6B7-4843-861F-13B5868A9E34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30FD2F8C-E6B7-4843-861F-13B5868A9E34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30FD2F8C-E6B7-4843-861F-13B5868A9E34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30FD2F8C-E6B7-4843-861F-13B5868A9E34}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {87102B65-2E6D-4560-93A8-B11412BF5F07}
+	EndGlobalSection
+EndGlobal
