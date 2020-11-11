@@ -198,22 +198,22 @@ namespace DomainLogic
         }
     }
 
+    public abstract class Weapon
+    { 
+        public abstract double range { get; }
 
-    public class Weapon
-    {
-        private double MAX_RANGE;
         public bool isInRange(double distance)
         {
-            return distance <= MAX_RANGE;
+            return distance <= range;
         }
     }
 
     public class Melee : Weapon
     {
-        private const double MAX_RANGE = 2;        
+        public override double range => 2;         
     }
     public class Ranged : Weapon
     {
-        private const double MAX_RANGE = 20;        
+        public override double range => 20;        
     }
 }
