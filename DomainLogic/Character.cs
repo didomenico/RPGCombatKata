@@ -198,23 +198,22 @@ namespace DomainLogic
         }
     }
 
-    public interface Weapon
+
+    public class Weapon
     {
-        bool isInRange(double distance);
+        private double MAX_RANGE;
+        public bool isInRange(double distance)
+        {
+            return distance <= MAX_RANGE;
+        }
     }
 
     public class Melee : Weapon
     {
-        public bool isInRange(double distance)
-        {
-            return distance <= 2;
-        }
+        private const double MAX_RANGE = 2;        
     }
     public class Ranged : Weapon
     {
-        public bool isInRange(double distance)
-        {
-            return distance <= 20;
-        }
+        private const double MAX_RANGE = 20;        
     }
 }
