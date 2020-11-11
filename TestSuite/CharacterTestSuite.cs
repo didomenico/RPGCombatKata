@@ -147,8 +147,8 @@ namespace TestSuite
         [TestMethod]
         public void testDamagingMeleeOutOfRange()
         {
-            Character melee = new Character(Weapon.Melee);
-            Character ranged = new Character(Weapon.Ranged);
+            Character melee = new Character(new Melee());
+            Character ranged = new Character(new Ranged());
 
             melee.setPosition(-1.2, -0.3);
             ranged.setPosition(0, 3);
@@ -161,8 +161,8 @@ namespace TestSuite
         [TestMethod]
         public void testDamagingMeleeInRange()
         {
-            Character melee = new Character(Weapon.Melee);
-            Character ranged = new Character(Weapon.Ranged);
+            Character melee = new Character(new Melee());
+            Character ranged = new Character(new Ranged());
 
             ranged.setPosition(1, 0.5);
             ranged.setPosition(0.2, 0.5);
@@ -175,8 +175,8 @@ namespace TestSuite
         [TestMethod]
         public void testDamagingMeleeInRangeLimit()
         {
-            Character melee = new Character(Weapon.Melee);
-            Character ranged = new Character(Weapon.Ranged);
+            Character melee = new Character(new Melee());
+            Character ranged = new Character(new Ranged());
 
             ranged.setPosition(0, 2);            
             melee.attack(ranged, 100);
@@ -187,8 +187,8 @@ namespace TestSuite
         [TestMethod]
         public void testDamagingRangedOutOfRange()
         {
-            Character melee = new Character(Weapon.Melee);
-            Character ranged = new Character(Weapon.Ranged);
+            Character melee = new Character(new Melee());
+            Character ranged = new Character(new Ranged());
 
             ranged.setPosition(15.4, 22.3);
             melee.setPosition(-4.3, 1.1);
@@ -201,8 +201,8 @@ namespace TestSuite
         [TestMethod]
         public void testDamagingRangedInRange()
         {
-            Character melee = new Character(Weapon.Melee);
-            Character ranged = new Character(Weapon.Ranged);
+            Character melee = new Character(new Melee());
+            Character ranged = new Character(new Ranged());
 
             ranged.setPosition(10.4, 12.3);
             melee.setPosition(-1.3, 1.1);
@@ -215,8 +215,8 @@ namespace TestSuite
         [TestMethod]
         public void testDamagingRangedInRangeLimit()
         {
-            Character melee = new Character(Weapon.Melee);
-            Character ranged = new Character(Weapon.Ranged);
+            Character melee = new Character(new Melee());
+            Character ranged = new Character(new Ranged());
 
             ranged.setPosition(20, 0);
             ranged.attack(melee, 100);
@@ -230,8 +230,8 @@ namespace TestSuite
         [TestMethod]
         public void testDamagingAlly()
         {
-            Character attacker = new Character(Weapon.Melee);
-            Character ally = new Character(Weapon.Ranged);
+            Character attacker = new Character(new Melee());
+            Character ally = new Character(new Ranged());
 
             attacker.joinFaction("Test");
             ally.joinFaction("Test");
@@ -244,8 +244,8 @@ namespace TestSuite
         [TestMethod]
         public void testDamagingEnemy()
         {
-            Character attacker = new Character(Weapon.Melee);
-            Character ally = new Character(Weapon.Ranged);
+            Character attacker = new Character(new Melee());
+            Character ally = new Character(new Ranged());
 
             attacker.joinFaction("Test");
             ally.joinFaction("Test");
@@ -258,8 +258,8 @@ namespace TestSuite
         [TestMethod]
         public void testHealingAlly()
         {
-            Character healer = new Character(Weapon.Melee);
-            Character ally = new Character(Weapon.Ranged);
+            Character healer = new Character(new Melee());
+            Character ally = new Character(new Ranged());
 
             healer.attack(ally, 200);
 
@@ -274,8 +274,8 @@ namespace TestSuite
         [TestMethod]
         public void testHealingEnemy()
         {
-            Character healer = new Character(Weapon.Melee);
-            Character enemy = new Character(Weapon.Ranged);
+            Character healer = new Character(new Melee());
+            Character enemy = new Character(new Ranged());
 
             healer.attack(enemy, 200);
 
@@ -290,8 +290,8 @@ namespace TestSuite
         [TestMethod]
         public void testHealingNoFaction()
         {
-            Character healer = new Character(Weapon.Melee);
-            Character enemy = new Character(Weapon.Ranged);
+            Character healer = new Character(new Melee());
+            Character enemy = new Character(new Ranged());
 
             healer.attack(enemy, 200);          
             healer.heal(enemy, 100);
@@ -302,8 +302,8 @@ namespace TestSuite
         [TestMethod]
         public void testHealingFactionAndNoFaction()
         {
-            Character healer = new Character(Weapon.Melee);
-            Character enemy = new Character(Weapon.Ranged);
+            Character healer = new Character(new Melee());
+            Character enemy = new Character(new Ranged());
 
             healer.attack(enemy, 200);
 
@@ -317,8 +317,8 @@ namespace TestSuite
         [TestMethod]
         public void testHealingNoFactionAndFaction()
         {
-            Character healer = new Character(Weapon.Melee);
-            Character enemy = new Character(Weapon.Ranged);
+            Character healer = new Character(new Melee());
+            Character enemy = new Character(new Ranged());
 
             healer.attack(enemy, 200);
 
@@ -332,8 +332,8 @@ namespace TestSuite
         [TestMethod]
         public void testHealingAllyMultipleAndSingleFaction()
         {
-            Character healer = new Character(Weapon.Melee);
-            Character enemy = new Character(Weapon.Ranged);
+            Character healer = new Character(new Melee());
+            Character enemy = new Character(new Ranged());
 
             healer.attack(enemy, 200);
             
@@ -350,8 +350,8 @@ namespace TestSuite
         [TestMethod]
         public void testHealingAllySingleAndMultipleFaction()
         {
-            Character healer = new Character(Weapon.Melee);
-            Character enemy = new Character(Weapon.Ranged);
+            Character healer = new Character(new Melee());
+            Character enemy = new Character(new Ranged());
 
             healer.attack(enemy, 200);
 
@@ -368,8 +368,8 @@ namespace TestSuite
         [TestMethod]
         public void testHealingHealerLeftFaction()
         {
-            Character healer = new Character(Weapon.Melee);
-            Character enemy = new Character(Weapon.Ranged);
+            Character healer = new Character(new Melee());
+            Character enemy = new Character(new Ranged());
 
             healer.attack(enemy, 200);
 
@@ -387,8 +387,8 @@ namespace TestSuite
         [TestMethod]
         public void testHealingTargetLeftFaction()
         {
-            Character healer = new Character(Weapon.Melee);
-            Character enemy = new Character(Weapon.Ranged);
+            Character healer = new Character(new Melee());
+            Character enemy = new Character(new Ranged());
 
             healer.attack(enemy, 200);
 
@@ -441,6 +441,5 @@ namespace TestSuite
             Assert.AreEqual(0, tree.getHealth());
             Assert.IsFalse(tree.isAlive());
         }
-
     }
 }

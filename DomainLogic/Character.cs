@@ -1,33 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography.X509Certificates;
 
 namespace DomainLogic
-{    
-    public enum Weapon { Melee, Ranged}
+{ 
     public class Character : Prop
-    {                
+    {
         protected int level = 1;
 
         // If undefined, a character is created without weapons. 
-        // He will fight bare-handed and thus, melee.
-        protected Weapon weapon = Weapon.Melee;
+        // He will fight bare-handed and thus, melee. 
+        protected Weapon weapon = new Melee();
 
         protected HashSet<string> factions = new HashSet<string>();
 
-        public Character() : base(1000) {}
+        public Character() : base(1000) { }
 
         public Character(Weapon weapon) : this()
-        {
+        {                    
             this.weapon = weapon;
         }
 
         public Character(double x, double y) : this()
-        {         
+        {
             setPosition(x, y);
-        }        
-        
+        }
+
         public int getLevel()
         {
             return level;
@@ -37,7 +34,7 @@ namespace DomainLogic
         {
             const int MINIMUM_LEVEL_DIFFERENCE = 5;
             const double PERCENTAGE = 0.5;
-            
+
             // If the target is 5 or more levels below the attacker, damage is increased by 50%.
             if (MINIMUM_LEVEL_DIFFERENCE <= level - target.getLevel())
             {
@@ -60,24 +57,14 @@ namespace DomainLogic
 
         protected bool isInRange(Prop target)
         {
-            if (getWeapon() == Weapon.Melee &&
-                distance(target) > 2)
-            {
-                return false;
-            }
-
-            if(getWeapon() == Weapon.Ranged &&
-               distance(target) > 20)
-            {
-                return false;
-            }
-
-            return true;
+            double targetDistance = distance(target);
+            
+            return weapon.isInRange(targetDistance);         
         }
 
         public Weapon getWeapon()
         {
-            return weapon;    
+            return weapon;
         }
 
         // Heal himself. No need to check, because method is called from the object itself.
@@ -89,10 +76,10 @@ namespace DomainLogic
             }
             else
             {
-                health = 1000; 
+                health = 1000;
             }
         }
-        
+
         public void levelUp()
         {
             level++;
@@ -110,8 +97,8 @@ namespace DomainLogic
         }
 
         public void attack(Prop target, int damage)
-        {            
-            if (isInRange(target) == false) { return; }           
+        {
+            if (isInRange(target) == false) { return; }
 
             target.sufferDamage(damage);
         }
@@ -127,10 +114,10 @@ namespace DomainLogic
         }
 
         public void heal(Character target, int amount)
-        {            
-            if(belongsToSameFaction(target) == false) { return; }            
+        {
+            if (belongsToSameFaction(target) == false) { return; }
 
-            target.heal(amount); 
+            target.heal(amount);
         }
 
         public HashSet<string> getFactions()
@@ -174,11 +161,11 @@ namespace DomainLogic
         {
             health -= damage;
 
-            if(health < 0) { health = 0; }
+            if (health < 0) { health = 0; }
 
             // Not sure what it meant to be destroyed when health drops to 0,
             // but I considered it's a flag instead of freeing the object from memory.
-            if (health == 0) { alive = false; }            
+            if (health == 0) { alive = false; }
         }
 
         public (double x, double y) getPosition()
@@ -202,12 +189,32 @@ namespace DomainLogic
         }
 
         protected double distance(Prop other)
-        {            
+        {
             // Distance formula = √[(x₂ - x₁)² + (y₂ - y₁)²]
             double distance = Math.Sqrt(Math.Pow(position.x - other.getPosition().x, 2) +
                                         Math.Pow(position.y + other.getPosition().y, 2));
 
             return distance;
+        }
+    }
+
+    public interface Weapon
+    {
+        bool isInRange(double distance);
+    }
+
+    public class Melee : Weapon
+    {
+        public bool isInRange(double distance)
+        {
+            return distance <= 2;
+        }
+    }
+    public class Ranged : Weapon
+    {
+        public bool isInRange(double distance)
+        {
+            return distance <= 20;
         }
     }
 }
