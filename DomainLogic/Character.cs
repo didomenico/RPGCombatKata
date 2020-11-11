@@ -35,20 +35,23 @@ namespace DomainLogic
 
         protected int recalculateDamageAccordingToLevel(int damage, Character target)
         {
+            const int MINIMUM_LEVEL_DIFFERENCE = 5;
+            const double PERCENTAGE = 0.5;
+            
             // If the target is 5 or more levels below the attacker, damage is increased by 50%.
-            if (target.getLevel() + 5 <= level)
+            if (MINIMUM_LEVEL_DIFFERENCE <= level - target.getLevel())
             {
-                double increasedAmount = damage * 1.5;
+                double increasedDamage = damage * (1 + PERCENTAGE);
 
-                return Convert.ToInt32(Math.Round(increasedAmount));
+                return Convert.ToInt32(Math.Round(increasedDamage));
             }
 
             // If the target is 5 or more levels above the attacker, damage is reduced by 50%.
-            if (target.getLevel() - 5 >= level)
+            if (MINIMUM_LEVEL_DIFFERENCE <= target.getLevel() - level)
             {
-                double debuffedAmount = damage * 0.5;
+                double reducedAmount = damage * (1 - PERCENTAGE);
 
-                return Convert.ToInt32(Math.Round(debuffedAmount));
+                return Convert.ToInt32(Math.Round(reducedAmount));
             }
 
             // If they are within 4 levels of difference, deals the original damage
