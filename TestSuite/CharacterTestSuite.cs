@@ -11,7 +11,7 @@ namespace TestSuite
           Iteration 1
         ************/
         [TestMethod]
-        public void testCharacterInitialization()
+        public void TestCharacterInitialization()
         {
             Character character = new Character();
 
@@ -21,7 +21,7 @@ namespace TestSuite
         }
 
         [TestMethod]
-        public void testDamagingNonLethaly()
+        public void TestDamagingNonLethaly()
         {
             Character attacker = new Character();
             Character target = new Character();
@@ -32,7 +32,7 @@ namespace TestSuite
         }
 
         [TestMethod]
-        public void testDamagingLethaly()
+        public void TestDamagingLethaly()
         {
             Character attacker = new Character();
             Character target = new Character();
@@ -45,7 +45,7 @@ namespace TestSuite
 
         //Damage dealt drops target health exactly to 0.
         [TestMethod]
-        public void testDamagingLethalyExactlyToZero()
+        public void TestDamagingLethalyExactlyToZero()
         {
             Character attacker = new Character();
             Character target = new Character();
@@ -57,7 +57,7 @@ namespace TestSuite
         }
 
         [TestMethod]
-        public void testHealingBelowMaxHealth()
+        public void TestHealingBelowMaxHealth()
         {
             Character attacker = new Character();
             Character target = new Character();
@@ -69,7 +69,7 @@ namespace TestSuite
         }
 
         [TestMethod]
-        public void testHealingExceedingMaxHealth()
+        public void TestHealingExceedingMaxHealth()
         {
             Character attacker = new Character();
             Character target = new Character();
@@ -83,7 +83,7 @@ namespace TestSuite
         //Test case where received healing will make the targets reach 
         //their exact maximum health, instead of more.
         [TestMethod]
-        public void testHealingToExactMaxHealth()
+        public void TestHealingToExactMaxHealth()
         {
             Character attacker = new Character();
             Character target = new Character();
@@ -98,7 +98,7 @@ namespace TestSuite
           Iteration 2
         ************/
         [TestMethod]
-        public void testDamagingSelf()
+        public void TestDamagingSelf()
         {
             // A character cannot deal damage to itself.
             Character target = new Character();
@@ -109,7 +109,7 @@ namespace TestSuite
         }
       
         [TestMethod]
-        public void testDamagingWhenAttackerIsMoreThanFiveLevelsAbove()
+        public void TestDamagingWhenAttackerIsMoreThanFiveLevelsAbove()
         {
             Character attacker = new Character();
             Character target = new Character();
@@ -126,7 +126,7 @@ namespace TestSuite
         }
 
         [TestMethod]
-        public void testDamagingWhenTargetIsMoreThanFiveLevelsAbove()
+        public void TestDamagingWhenTargetIsMoreThanFiveLevelsAbove()
         {
             Character attacker = new Character();
             Character target = new Character();
@@ -145,7 +145,7 @@ namespace TestSuite
           Iteration 3
         ************/
         [TestMethod]
-        public void testDamagingMeleeOutOfRange()
+        public void TestDamagingMeleeOutOfRange()
         {
             Character melee = new Character(new Melee());
             Character ranged = new Character(new Ranged());
@@ -159,7 +159,7 @@ namespace TestSuite
         }
 
         [TestMethod]
-        public void testDamagingMeleeInRange()
+        public void TestDamagingMeleeInRange()
         {
             Character melee = new Character(new Melee());
             Character ranged = new Character(new Ranged());
@@ -173,7 +173,7 @@ namespace TestSuite
         }
 
         [TestMethod]
-        public void testDamagingMeleeInRangeLimit()
+        public void TestDamagingMeleeInRangeLimit()
         {
             Character melee = new Character(new Melee());
             Character ranged = new Character(new Ranged());
@@ -185,7 +185,7 @@ namespace TestSuite
         }
 
         [TestMethod]
-        public void testDamagingRangedOutOfRange()
+        public void TestDamagingRangedOutOfRange()
         {
             Character melee = new Character(new Melee());
             Character ranged = new Character(new Ranged());
@@ -199,7 +199,7 @@ namespace TestSuite
         }
 
         [TestMethod]
-        public void testDamagingRangedInRange()
+        public void TestDamagingRangedInRange()
         {
             Character melee = new Character(new Melee());
             Character ranged = new Character(new Ranged());
@@ -213,7 +213,7 @@ namespace TestSuite
         }
 
         [TestMethod]
-        public void testDamagingRangedInRangeLimit()
+        public void TestDamagingRangedInRangeLimit()
         {
             Character melee = new Character(new Melee());
             Character ranged = new Character(new Ranged());
@@ -228,7 +228,7 @@ namespace TestSuite
           Iteration 4
         ************/
         [TestMethod]
-        public void testDamagingAlly()
+        public void TestDamagingAlly()
         {
             Character attacker = new Character();
             Character ally = new Character();
@@ -242,7 +242,7 @@ namespace TestSuite
         }
 
         [TestMethod]
-        public void testDamagingEnemy()
+        public void TestDamagingEnemy()
         {
             Character attacker = new Character();
             Character ally = new Character();
@@ -256,7 +256,7 @@ namespace TestSuite
         }
 
         [TestMethod]
-        public void testHealingAlly()
+        public void TestHealingAlly()
         {
             Character healer = new Character();
             Character ally = new Character();
@@ -272,7 +272,7 @@ namespace TestSuite
         }
 
         [TestMethod]
-        public void testHealingEnemy()
+        public void TestHealingEnemy()
         {
             Character healer = new Character();
             Character enemy = new Character();
@@ -288,7 +288,7 @@ namespace TestSuite
         }
 
         [TestMethod]
-        public void testHealingNoFaction()
+        public void TestHealingNoFaction()
         {
             Character healer = new Character();
             Character enemy = new Character();
@@ -300,7 +300,7 @@ namespace TestSuite
         }
 
         [TestMethod]
-        public void testHealingFactionAndNoFaction()
+        public void TestHealingFactionAndNoFaction()
         {
             Character healer = new Character();
             Character enemy = new Character();
@@ -315,7 +315,7 @@ namespace TestSuite
         }
 
         [TestMethod]
-        public void testHealingNoFactionAndFaction()
+        public void TestHealingNoFactionAndFaction()
         {
             Character healer = new Character();
             Character enemy = new Character();
@@ -330,7 +330,7 @@ namespace TestSuite
         }
 
         [TestMethod]
-        public void testHealingAllyMultipleAndSingleFaction()
+        public void TestHealingAllyMultipleAndSingleFaction()
         {
             Character healer = new Character();
             Character enemy = new Character();
@@ -348,7 +348,7 @@ namespace TestSuite
         }
 
         [TestMethod]
-        public void testHealingAllySingleAndMultipleFaction()
+        public void TestHealingAllySingleAndMultipleFaction()
         {
             Character healer = new Character();
             Character enemy = new Character();
@@ -366,7 +366,7 @@ namespace TestSuite
         }
 
         [TestMethod]
-        public void testHealingHealerLeftFaction()
+        public void TestHealingHealerLeftFaction()
         {
             Character healer = new Character();
             Character enemy = new Character();
@@ -385,7 +385,7 @@ namespace TestSuite
         }
 
         [TestMethod]
-        public void testHealingTargetLeftFaction()
+        public void TestHealingTargetLeftFaction()
         {
             Character healer = new Character();
             Character enemy = new Character();
@@ -407,7 +407,7 @@ namespace TestSuite
           Iteration 5
         ************/
         [TestMethod]
-        public void testDamagingNonLetalyProp()
+        public void TestDamagingNonLetalyProp()
         {
             Prop tree = new Prop(2000);
             Character attacker = new Character();
@@ -419,7 +419,7 @@ namespace TestSuite
         }
 
         [TestMethod]
-        public void testDamagingLetalyProp()
+        public void TestDamagingLetalyProp()
         {
             Prop tree = new Prop(2000);
             Character attacker = new Character();
@@ -431,7 +431,7 @@ namespace TestSuite
         }
 
         [TestMethod]
-        public void testDamagingLethalyExactlyToZeroProp()
+        public void TestDamagingLethalyExactlyToZeroProp()
         {
             Prop tree = new Prop(2000);
             Character attacker = new Character();

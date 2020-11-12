@@ -25,24 +25,24 @@ namespace DomainLogic
 
         public Character(double x, double y) : this()
         {
-            setPosition(x, y);
+            SetPosition(x, y);
         }
 
-        public int getLevel()
+        public int GetLevel()
         {
             return level;
         }
 
-        protected uint recalculateDamageAccordingToLevel(uint damage, Character target)
+        protected uint RecalculateDamageAccordingToLevel(uint damage, Character target)
         {
             double extraDamage = damage * DAMAGE_MODIFIER_PERCENTAGE;
 
-            if (MINIMUM_LEVEL_DIFFERENCE <= level - target.getLevel())
+            if (MINIMUM_LEVEL_DIFFERENCE <= level - target.GetLevel())
             {                
                 return Convert.ToUInt32(Math.Round(damage + extraDamage));
             }         
             
-            if (MINIMUM_LEVEL_DIFFERENCE <= target.getLevel() - level)
+            if (MINIMUM_LEVEL_DIFFERENCE <= target.GetLevel() - level)
             {                
                 return Convert.ToUInt32(Math.Round(damage - extraDamage));
             }
@@ -50,19 +50,23 @@ namespace DomainLogic
             return damage;
         }
 
-        protected bool isInRange(Prop target)
+        protected bool IsInRange(Prop target)
         {
-            double targetDistance = distance(target);
+            double targetDistance = Distance(target);
             
-            return weapon.isInRange(targetDistance);         
+            return weapon.IsInRange(targetDistance);         
         }
 
-        public Weapon getWeapon()
+        public Weapon GetWeapon()
         {
             return weapon;
         }
         
-        public void healSelf(uint amount)
+        // Here I decided to not rename to HealSelf() because using
+        // the same name with polymorfism makes for a better interface
+        // because it is more uniform/isonomic and easier to guess,
+        // since the user only have to remember the name of one method.
+        public void Heal(uint amount)
         {
             if (health + amount <= 1000)
             {
@@ -74,55 +78,55 @@ namespace DomainLogic
             }
         }
 
-        public void levelUp()
+        public void LevelUp()
         {
             level++;
         }
 
-        public void attack(Character target, uint damage)
+        public void Attack(Character target, uint damage)
         {
-            if (belongsToSameFaction(target)) { return; }
+            if (BelongsToSameFaction(target)) { return; }
 
             if (target == this) { return; }
 
-            damage = recalculateDamageAccordingToLevel(damage, target);
+            damage = RecalculateDamageAccordingToLevel(damage, target);
 
             // Calls the attack part that is common to target and props to avoid code replication.
-            attack((Prop)target, damage);
+            Attack((Prop)target, damage);
         }
 
-        public void attack(Prop target, uint damage)
+        public void Attack(Prop target, uint damage)
         {
-            if (isInRange(target) == false) { return; }
+            if (IsInRange(target) == false) { return; }
 
-            target.sufferDamage(damage);
+            target.SufferDamage(damage);
         }
 
-        public void joinFaction(string faction)
+        public void JoinFaction(string faction)
         {
             factions.Add(faction);
         }
 
-        public void leaveFaction(string faction)
+        public void LeaveFaction(string faction)
         {
             factions.Remove(faction);
         }
 
-        public void heal(Character target, uint amount)
+        public void Heal(Character target, uint amount)
         {
-            if (belongsToSameFaction(target) == false) { return; }
+            if (BelongsToSameFaction(target) == false) { return; }
 
-            target.healSelf(amount);
+            target.Heal(amount);
         }
 
-        public HashSet<string> getFactions()
+        public HashSet<string> GetFactions()
         {
             return factions;
         }
 
-        public bool belongsToSameFaction(Character other)
+        public bool BelongsToSameFaction(Character other)
         {
-            HashSet<string> otherFactions = other.getFactions();
+            HashSet<string> otherFactions = other.GetFactions();
             otherFactions.IntersectWith(factions);
 
             //If number of shared factions is 1 or more, returns true
@@ -152,7 +156,7 @@ namespace DomainLogic
         }
 
         // Must make it internal to enable Character to attack a Prop
-        internal protected void sufferDamage(uint damage)
+        internal protected void SufferDamage(uint damage)
         {
             if (damage < health)
             {
@@ -165,31 +169,31 @@ namespace DomainLogic
             }
         }
 
-        public (double x, double y) getPosition()
+        public (double x, double y) GetPosition()
         {
             return position;
         }
 
-        public uint getHealth()
+        public uint GetHealth()
         {
             return health;
         }
 
-        public void setPosition(double x, double y)
+        public void SetPosition(double x, double y)
         {
             position = (x, y);
         }
 
-        public bool isAlive()
+        public bool IsAlive()
         {
             return alive;
         }
 
-        protected double distance(Prop other)
+        protected double Distance(Prop other)
         {
             // Distance formula = √[(x₂ - x₁)² + (y₂ - y₁)²]
-            double distance = Math.Sqrt(Math.Pow(position.x - other.getPosition().x, 2) +
-                                        Math.Pow(position.y + other.getPosition().y, 2));
+            double distance = Math.Sqrt(Math.Pow(position.x - other.GetPosition().x, 2) +
+                                        Math.Pow(position.y + other.GetPosition().y, 2));
 
             return distance;
         }
@@ -199,7 +203,7 @@ namespace DomainLogic
     { 
         public abstract double range { get; }
 
-        public bool isInRange(double distance)
+        public bool IsInRange(double distance)
         {
             return distance <= range;
         }
