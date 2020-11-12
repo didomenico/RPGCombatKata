@@ -13,6 +13,9 @@ namespace DomainLogic
 
         protected HashSet<string> factions = new HashSet<string>();
 
+        const int MINIMUM_LEVEL_DIFFERENCE = 5;
+        const double DAMAGE_MODIFIER_PERCENTAGE = 0.5;
+
         public Character() : base(1000) { }
 
         public Character(Weapon weapon) : this()
@@ -30,28 +33,20 @@ namespace DomainLogic
             return level;
         }
 
-        protected int recalculateDamageAccordingToLevel(int damage, Character target)
+        protected uint recalculateDamageAccordingToLevel(uint damage, Character target)
         {
-            const int MINIMUM_LEVEL_DIFFERENCE = 5;
-            const double PERCENTAGE = 0.5;
+            double extraDamage = damage * DAMAGE_MODIFIER_PERCENTAGE;
 
-            // If the target is 5 or more levels below the attacker, damage is increased by 50%.
             if (MINIMUM_LEVEL_DIFFERENCE <= level - target.getLevel())
-            {
-                double increasedDamage = damage * (1 + PERCENTAGE);
-
-                return Convert.ToInt32(Math.Round(increasedDamage));
-            }
-
-            // If the target is 5 or more levels above the attacker, damage is reduced by 50%.
+            {                
+                return Convert.ToUInt32(Math.Round(damage + extraDamage));
+            }         
+            
             if (MINIMUM_LEVEL_DIFFERENCE <= target.getLevel() - level)
-            {
-                double reducedAmount = damage * (1 - PERCENTAGE);
-
-                return Convert.ToInt32(Math.Round(reducedAmount));
+            {                
+                return Convert.ToUInt32(Math.Round(damage - extraDamage));
             }
 
-            // If they are within 4 levels of difference, deals the original damage
             return damage;
         }
 
@@ -66,9 +61,8 @@ namespace DomainLogic
         {
             return weapon;
         }
-
-        // Heal himself. No need to check, because method is called from the object itself.
-        public void heal(int amount)
+        
+        public void healSelf(uint amount)
         {
             if (health + amount <= 1000)
             {
@@ -84,7 +78,8 @@ namespace DomainLogic
         {
             level++;
         }
-        public void attack(Character target, int damage)
+
+        public void attack(Character target, uint damage)
         {
             if (belongsToSameFaction(target)) { return; }
 
@@ -96,7 +91,7 @@ namespace DomainLogic
             attack((Prop)target, damage);
         }
 
-        public void attack(Prop target, int damage)
+        public void attack(Prop target, uint damage)
         {
             if (isInRange(target) == false) { return; }
 
@@ -113,11 +108,11 @@ namespace DomainLogic
             factions.Remove(faction);
         }
 
-        public void heal(Character target, int amount)
+        public void heal(Character target, uint amount)
         {
             if (belongsToSameFaction(target) == false) { return; }
 
-            target.heal(amount);
+            target.healSelf(amount);
         }
 
         public HashSet<string> getFactions()
@@ -140,32 +135,34 @@ namespace DomainLogic
 
     public class Prop
     {
-        protected int health = 1000;
+        protected uint health = 1000;
 
         protected bool alive = true;
 
         protected (double x, double y) position = (0.0, 0.0);
 
-        public Prop(int health)
+        public Prop(uint health)
         {
             this.health = health;
         }
 
-        public Prop(int health, double x, double y) : this(health)
+        public Prop(uint health, double x, double y) : this(health)
         {
             position = (x, y);
         }
 
         // Must make it internal to enable Character to attack a Prop
-        internal protected void sufferDamage(int damage)
+        internal protected void sufferDamage(uint damage)
         {
-            health -= damage;
-
-            if (health < 0) { health = 0; }
-
-            // Not sure what it meant to be destroyed when health drops to 0,
-            // but I considered it's a flag instead of freeing the object from memory.
-            if (health == 0) { alive = false; }
+            if (damage < health)
+            {
+                health -= damage;                
+            }
+            else
+            { 
+                health = 0; 
+                alive = false;
+            }
         }
 
         public (double x, double y) getPosition()
@@ -173,7 +170,7 @@ namespace DomainLogic
             return position;
         }
 
-        public int getHealth()
+        public uint getHealth()
         {
             return health;
         }
