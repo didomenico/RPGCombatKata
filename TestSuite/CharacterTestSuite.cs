@@ -230,8 +230,8 @@ namespace TestSuite
         [TestMethod]
         public void testDamagingAlly()
         {
-            Character attacker = new Character(new Melee());
-            Character ally = new Character(new Ranged());
+            Character attacker = new Character();
+            Character ally = new Character();
 
             attacker.joinFaction("Test");
             ally.joinFaction("Test");
@@ -244,8 +244,8 @@ namespace TestSuite
         [TestMethod]
         public void testDamagingEnemy()
         {
-            Character attacker = new Character(new Melee());
-            Character ally = new Character(new Ranged());
+            Character attacker = new Character();
+            Character ally = new Character();
 
             attacker.joinFaction("Test");
             ally.joinFaction("Test");
@@ -258,8 +258,8 @@ namespace TestSuite
         [TestMethod]
         public void testHealingAlly()
         {
-            Character healer = new Character(new Melee());
-            Character ally = new Character(new Ranged());
+            Character healer = new Character();
+            Character ally = new Character();
 
             healer.attack(ally, 200);
 
@@ -274,8 +274,8 @@ namespace TestSuite
         [TestMethod]
         public void testHealingEnemy()
         {
-            Character healer = new Character(new Melee());
-            Character enemy = new Character(new Ranged());
+            Character healer = new Character();
+            Character enemy = new Character();
 
             healer.attack(enemy, 200);
 
@@ -290,8 +290,8 @@ namespace TestSuite
         [TestMethod]
         public void testHealingNoFaction()
         {
-            Character healer = new Character(new Melee());
-            Character enemy = new Character(new Ranged());
+            Character healer = new Character();
+            Character enemy = new Character();
 
             healer.attack(enemy, 200);          
             healer.heal(enemy, 100);
@@ -302,8 +302,8 @@ namespace TestSuite
         [TestMethod]
         public void testHealingFactionAndNoFaction()
         {
-            Character healer = new Character(new Melee());
-            Character enemy = new Character(new Ranged());
+            Character healer = new Character();
+            Character enemy = new Character();
 
             healer.attack(enemy, 200);
 
@@ -317,8 +317,8 @@ namespace TestSuite
         [TestMethod]
         public void testHealingNoFactionAndFaction()
         {
-            Character healer = new Character(new Melee());
-            Character enemy = new Character(new Ranged());
+            Character healer = new Character();
+            Character enemy = new Character();
 
             healer.attack(enemy, 200);
 
@@ -332,8 +332,8 @@ namespace TestSuite
         [TestMethod]
         public void testHealingAllyMultipleAndSingleFaction()
         {
-            Character healer = new Character(new Melee());
-            Character enemy = new Character(new Ranged());
+            Character healer = new Character();
+            Character enemy = new Character();
 
             healer.attack(enemy, 200);
             
@@ -350,8 +350,8 @@ namespace TestSuite
         [TestMethod]
         public void testHealingAllySingleAndMultipleFaction()
         {
-            Character healer = new Character(new Melee());
-            Character enemy = new Character(new Ranged());
+            Character healer = new Character();
+            Character enemy = new Character();
 
             healer.attack(enemy, 200);
 
@@ -368,8 +368,8 @@ namespace TestSuite
         [TestMethod]
         public void testHealingHealerLeftFaction()
         {
-            Character healer = new Character(new Melee());
-            Character enemy = new Character(new Ranged());
+            Character healer = new Character();
+            Character enemy = new Character();
 
             healer.attack(enemy, 200);
 
@@ -387,8 +387,8 @@ namespace TestSuite
         [TestMethod]
         public void testHealingTargetLeftFaction()
         {
-            Character healer = new Character(new Melee());
-            Character enemy = new Character(new Ranged());
+            Character healer = new Character();
+            Character enemy = new Character();
 
             healer.attack(enemy, 200);
 
